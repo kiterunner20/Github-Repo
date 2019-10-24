@@ -1,6 +1,7 @@
 package com.learning.githubrepo.core;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -11,6 +12,7 @@ import com.evernote.android.state.StateSaver;
 import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends Fragment {
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
