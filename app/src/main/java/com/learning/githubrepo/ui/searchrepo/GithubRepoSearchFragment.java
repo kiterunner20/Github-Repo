@@ -1,4 +1,4 @@
-package com.learning.githubrepo.ui;
+package com.learning.githubrepo.ui.searchrepo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -74,6 +74,7 @@ public class GithubRepoSearchFragment extends BaseFragment {
     public void onSearchRepoClicked() {
         if (isValid()) {
             searchQuery = etSearchQuery.getText().toString();
+
         }
     }
 

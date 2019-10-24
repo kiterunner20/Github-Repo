@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.evernote.android.state.State;
 import com.learning.githubrepo.R;
 import com.learning.githubrepo.core.BaseActivity;
+import com.learning.githubrepo.ui.searchrepo.GithubRepoSearchFragment;
 
 public class GithubRepoActivity extends BaseActivity {
 
