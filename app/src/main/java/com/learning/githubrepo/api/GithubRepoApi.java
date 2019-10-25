@@ -35,4 +35,8 @@ public class GithubRepoApi {
     public Observable<Result<List<FavoriteRepo>>> getCachedRepos() {
         return localDbTask.getCachedRepos();
     }
+
+    public void deleteFromCache(FavoriteRepo favoriteRepo) {
+        localDbTask.deleteFromCache(favoriteRepo);
+    }
 }

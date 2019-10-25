@@ -21,7 +21,7 @@ public class FavoriteRepoMapper implements BiFunction<Result<List<FavoriteRepo>>
                     favoriteRepos.add(FavoriteRepo.create(kotlinRepo.data().get(i).id(),
                             kotlinRepo.data().get(i).name(), kotlinRepo.data().get(i).owner(),
                             kotlinRepo.data().get(i).url(), kotlinRepo.data().get(i).description(),
-                            kotlinRepo.data().get(i).starCount(), kotlinRepo.data().get(i).language()));
+                            kotlinRepo.data().get(i).starCount(), kotlinRepo.data().get(i).language(), kotlinRepo.data().get(i).status()));
                 }
             }
         }
@@ -32,7 +32,7 @@ public class FavoriteRepoMapper implements BiFunction<Result<List<FavoriteRepo>>
                     favoriteRepos.add(FavoriteRepo.create(nonKotlinRepo.data().get(i).id(),
                             nonKotlinRepo.data().get(i).name(), nonKotlinRepo.data().get(i).owner(),
                             nonKotlinRepo.data().get(i).url(), nonKotlinRepo.data().get(i).description(),
-                            nonKotlinRepo.data().get(i).starCount(), nonKotlinRepo.data().get(i).language()));
+                            nonKotlinRepo.data().get(i).starCount(), nonKotlinRepo.data().get(i).language(), nonKotlinRepo.data().get(i).status()));
                 }
             }
         }

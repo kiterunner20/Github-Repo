@@ -68,13 +68,15 @@
                     tool:text="Repo description" />
 
                 <Button
-                    android:id="@+id/btn_unf"
+                    android:id="@+id/btn_fav"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/colorAccent"
-                    android:text="Unfavorite"
+                    android:text="Add to favorite"
+                    android:textAllCaps="false"
                     android:textColor="#FFFFFF" />
+
             </LinearLayout>
 
             <LinearLayout

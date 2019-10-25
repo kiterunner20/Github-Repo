@@ -150,8 +150,9 @@ public class GithubRepoSearchFragment extends GithubRepoBaseFragment implements 
     public void onFavClicked(GithubRepoData item) {
         FavoriteRepo favoriteRepo = FavoriteRepo.create(item.id(), item.name() != null ? item.name() : "",
                 item.owner() != null ? item.owner() : "", item.url() != null ? item.url() : "",
-                item.description() != null ? item.description() : "", item.starCount(), item.language() != null ? item.language() : "");
+                item.description() != null ? item.description() : "", item.starCount(), item.language() != null ? item.language() : "", item.status());
         presenter.insertToDb(favoriteRepo);
+        Toast.makeText(getContext(), "Succesfully favorited the repository", Toast.LENGTH_LONG).show();
 
     }
 

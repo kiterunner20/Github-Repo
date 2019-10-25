@@ -28,7 +28,7 @@ public class GithubRepoMapper implements Function<GithubReposiotry, Result<List<
 
                     githubRepoData.add(GithubRepoData.create(item.getId(), item.getName(),
                             owner, item.getHtmlUrl(), item.getDescription(), item.getStargazersCount(),
-                            item.getLanguage()));
+                            item.getLanguage(),false));
                 }
                 return Result.dataState(githubRepoData);
             } else {

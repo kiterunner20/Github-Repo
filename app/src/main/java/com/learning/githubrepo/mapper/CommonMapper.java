@@ -21,7 +21,7 @@ public class CommonMapper implements Function<List<FavoriteRepoEntity>, Result<L
                 favoriteRepoList.add(FavoriteRepo.create(repoEntities.get(i).githubID,
                         repoEntities.get(i).name, repoEntities.get(i).owner,
                         repoEntities.get(i).url, repoEntities.get(i).description, repoEntities.get(i).stars,
-                        repoEntities.get(i).language));
+                        repoEntities.get(i).language, repoEntities.get(i).status));
 
             }
             return Result.dataState(favoriteRepoList);

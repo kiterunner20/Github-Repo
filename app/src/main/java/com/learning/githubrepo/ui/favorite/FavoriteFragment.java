@@ -13,9 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -159,6 +157,14 @@ public class FavoriteFragment extends GithubRepoBaseFragment implements Favorite
 
     @Override
     public void onFavClicked(FavoriteRepo item) {
+        FavoriteRepo favoriteRepo = FavoriteRepo.create(item.id(), item.name() != null ? item.name() : "",
+                item.owner() != null ? item.owner() : "", item.url() != null ? item.url() : "",
+                item.description() != null ? item.description() : "", item.starCount(), item.language() != null ? item.language() : "", item.status());
+
+        presenter.deleteFromCache(favoriteRepo);
+
+        Toast.makeText(getContext(), "Succesfully unfavorited the repository", Toast.LENGTH_LONG).show();
+
 
     }
 

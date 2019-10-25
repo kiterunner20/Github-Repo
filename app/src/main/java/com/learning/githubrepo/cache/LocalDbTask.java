@@ -26,7 +26,7 @@ public class LocalDbTask {
     public void insertToDb(FavoriteRepo favoriteRepo) {
         database.favoriteRepoDao().insert(new FavoriteRepoEntity(favoriteRepo.id(), favoriteRepo.name(),
                 favoriteRepo.owner(), favoriteRepo.url(), favoriteRepo.description(), favoriteRepo.starCount(),
-                favoriteRepo.language()));
+                favoriteRepo.language(), favoriteRepo.status()));
     }
 
     public Observable<Result<List<FavoriteRepo>>> getNonKotlinRepos() {
@@ -42,4 +42,9 @@ public class LocalDbTask {
     }
 
 
+    public void deleteFromCache(FavoriteRepo favoriteRepo) {
+        database.favoriteRepoDao().delete(new FavoriteRepoEntity(favoriteRepo.id(), favoriteRepo.name(),
+                favoriteRepo.owner(), favoriteRepo.url(), favoriteRepo.description(), favoriteRepo.starCount(),
+                favoriteRepo.language(), favoriteRepo.status()));
+    }
 }

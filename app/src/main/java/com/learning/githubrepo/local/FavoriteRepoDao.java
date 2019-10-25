@@ -1,6 +1,7 @@
 package com.learning.githubrepo.local;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -21,6 +22,9 @@ public interface FavoriteRepoDao {
 
     @Query("SELECT * FROM FavoriteRepoEntity WHERE repo_language = 'Kotlin' ORDER BY id DESC ")
     Observable<List<FavoriteRepoEntity>> getKotlinRepos();
+
+    @Delete
+    void delete(FavoriteRepoEntity favoriteRepoEntity);
 
 
 }

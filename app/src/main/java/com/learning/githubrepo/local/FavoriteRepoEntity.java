@@ -14,6 +14,7 @@ public class FavoriteRepoEntity {
     public static final String DESCRIPTION = "repo_description";
     public static final String STARS = "repo_stars";
     public static final String LANGUAGE = "repo_language";
+    public static final String STATUS = "status";
 
     @PrimaryKey(autoGenerate = true)
     public long id;
@@ -39,8 +40,12 @@ public class FavoriteRepoEntity {
     @ColumnInfo(name = LANGUAGE)
     public String language;
 
+    @ColumnInfo(name = STATUS)
+    public boolean status;
+
+
     public FavoriteRepoEntity(int githubID, String name, String owner, String url, String description,
-                              int stars, String language) {
+                              int stars, String language, boolean status) {
         this.githubID = githubID;
         this.name = name;
         this.owner = owner;
@@ -48,6 +53,7 @@ public class FavoriteRepoEntity {
         this.description = description;
         this.stars = stars;
         this.language = language;
+        this.status = status;
     }
 
 }

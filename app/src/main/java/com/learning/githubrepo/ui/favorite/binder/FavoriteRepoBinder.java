@@ -12,7 +12,6 @@ import androidx.cardview.widget.CardView;
 import com.ahamed.multiviewadapter.ItemBinder;
 import com.ahamed.multiviewadapter.ItemViewHolder;
 import com.learning.githubrepo.R;
-import com.learning.githubrepo.model.GithubRepoData;
 import com.learning.githubrepo.model.db.FavoriteRepo;
 
 import butterknife.BindView;
@@ -74,8 +73,8 @@ public class FavoriteRepoBinder extends ItemBinder<FavoriteRepo, FavoriteRepoBin
         TextView tvStartCount;
         @BindView(R.id.tv_repo_desc)
         TextView tvRepoDescription;
-        @BindView(R.id.tv_fav)
-        Button tvFav;
+        @BindView(R.id.btn_unf)
+        Button unFav;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -85,7 +84,7 @@ public class FavoriteRepoBinder extends ItemBinder<FavoriteRepo, FavoriteRepoBin
                 listener.onItemSelected(getItem());
             });
 
-            tvFav.setOnClickListener(v -> {
+            unFav.setOnClickListener(v -> {
                 listener.onFavClicked(getItem());
             });
 

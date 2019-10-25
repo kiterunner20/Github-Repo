@@ -28,7 +28,7 @@ public class GithubRepoResultBinder extends ItemBinder<GithubRepoData, GithubRep
     @Override
     public GithubRepoResultBinder.ViewHolder create(LayoutInflater inflater, ViewGroup parent) {
         return new GithubRepoResultBinder.ViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_repo_list, parent, false));
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_search_result, parent, false));
     }
 
     @Override
@@ -73,8 +73,8 @@ public class GithubRepoResultBinder extends ItemBinder<GithubRepoData, GithubRep
         TextView tvStartCount;
         @BindView(R.id.tv_repo_desc)
         TextView tvRepoDescription;
-        @BindView(R.id.tv_fav)
-        Button tvFav;
+        @BindView(R.id.btn_fav)
+        Button btnFav;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -84,7 +84,7 @@ public class GithubRepoResultBinder extends ItemBinder<GithubRepoData, GithubRep
                 listener.onItemSelected(getItem());
             });
 
-            tvFav.setOnClickListener(v -> {
+            btnFav.setOnClickListener(v -> {
                 listener.onFavClicked(getItem());
             });
 

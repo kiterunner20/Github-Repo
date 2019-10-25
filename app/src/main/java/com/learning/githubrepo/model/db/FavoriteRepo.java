@@ -8,8 +8,8 @@ import com.google.auto.value.AutoValue;
 public abstract class FavoriteRepo implements Parcelable {
 
     public static FavoriteRepo create(int id, String name, String owner, String url, String description,
-                                      int starCount, String language) {
-        return new AutoValue_FavoriteRepo(id, name, owner, url, description, starCount, language);
+                                      int starCount, String language, boolean status) {
+        return new AutoValue_FavoriteRepo(id, name, owner, url, description, starCount, language, status);
     }
 
     public abstract int id();
@@ -25,4 +25,6 @@ public abstract class FavoriteRepo implements Parcelable {
     public abstract int starCount();
 
     public abstract String language();
+
+    public abstract boolean status();
 }

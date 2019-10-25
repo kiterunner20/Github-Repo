@@ -3,9 +3,11 @@ package com.learning.githubrepo.ui.favorite;
 import com.learning.githubrepo.api.GithubRepoApi;
 import com.learning.githubrepo.core.BasePresenter;
 import com.learning.githubrepo.core.ErrorAction;
+import com.learning.githubrepo.model.db.FavoriteRepo;
 
 import javax.inject.Inject;
 
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -43,6 +45,13 @@ public class FavoritePresenter extends BasePresenter<FavoriteView> {
                             }
                         });
         addToSubscription(disposable);
+    }
+
+    public void deleteFromCache(FavoriteRepo favoriteRepo) {
+        Single.just(1).map(integer -> {
+            githubRepoApi.deleteFromCache(favoriteRepo);
+            return integer;
+        }).subscribeOn(Schedulers.io()).subscribe();
     }
 
 }

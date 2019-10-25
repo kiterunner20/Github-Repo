@@ -10,8 +10,8 @@ import io.reactivex.annotations.Nullable;
 public abstract class GithubRepoData implements Parcelable {
 
     public static GithubRepoData create(int id, String name, String owner, String url,
-                                        String description, int starCount, String language) {
-        return new AutoValue_GithubRepoData(id, name, owner, url, description, starCount, language);
+                                        String description, int starCount, String language, boolean status) {
+        return new AutoValue_GithubRepoData(id, name, owner, url, description, starCount, language, status);
     }
 
     public abstract int id();
@@ -32,4 +32,6 @@ public abstract class GithubRepoData implements Parcelable {
 
     @Nullable
     public abstract String language();
+
+    public abstract boolean status();
 }
