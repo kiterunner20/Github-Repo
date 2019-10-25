@@ -12,7 +12,7 @@ import com.learning.githubrepo.R;
 import com.learning.githubrepo.core.BaseActivity;
 import com.learning.githubrepo.ui.searchrepo.GithubRepoSearchFragment;
 
-public class GithubRepoActivity extends BaseActivity {
+public class GithubRepoActivity extends BaseActivity implements GithubRepoBaseFragment.GithubRepoCallback {
 
     @State
     int currentScreen;
@@ -30,7 +30,6 @@ public class GithubRepoActivity extends BaseActivity {
 
     @Override
     protected void initDependencies() {
-
     }
 
     @Override
@@ -54,6 +53,7 @@ public class GithubRepoActivity extends BaseActivity {
         }
     }
 
+
     @Override
     protected void onReady() {
 
@@ -63,4 +63,6 @@ public class GithubRepoActivity extends BaseActivity {
     protected void destroyPresenter() {
 
     }
+
+
 }

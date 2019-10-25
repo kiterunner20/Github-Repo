@@ -4,8 +4,6 @@ public interface BaseView {
 
     void showProgress();
 
-    void toggleAsyncProgress(boolean show);
-
     void showError(String error);
 
     void showContent();

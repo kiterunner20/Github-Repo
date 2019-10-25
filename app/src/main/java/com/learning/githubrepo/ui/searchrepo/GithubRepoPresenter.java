@@ -2,11 +2,16 @@ package com.learning.githubrepo.ui.searchrepo;
 
 import com.learning.githubrepo.api.GithubRepoApi;
 import com.learning.githubrepo.core.BasePresenter;
+import com.learning.githubrepo.core.ErrorAction;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
-public class GithubRepoPresenter extends BasePresenter {
+
+public class GithubRepoPresenter extends BasePresenter<GithubRepoView> {
 
     private final GithubRepoApi githubRepoApi;
 
@@ -16,4 +21,29 @@ public class GithubRepoPresenter extends BasePresenter {
     }
 
 
+    public void getRepoList(String searchQuery) {
+        showProgress();
+        Disposable disposable =
+                githubRepoApi.getRepoList(searchQuery)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(repoList -> {
+                            if (isViewAttached()) {
+                                showContent();
+                                if (repoList.data() != null) {
+                                    view.showRepos(repoList.data());
+                                } else {
+                                    view.showError(repoList.errorMessage());
+                                }
+                            }
+                        }, new ErrorAction() {
+                            @Override
+                            protected void handleError(Throwable throwable) {
+                                if (showContent()) {
+                                    view.showError("No data found !!");
+                                }
+                            }
+                        });
+        addToSubscription(disposable);
+    }
 }
