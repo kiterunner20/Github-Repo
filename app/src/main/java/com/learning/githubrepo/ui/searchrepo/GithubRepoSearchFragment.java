@@ -21,8 +21,9 @@ import com.evernote.android.state.State;
 import com.learning.githubrepo.GithubRepoApp;
 import com.learning.githubrepo.R;
 import com.learning.githubrepo.model.GithubRepoData;
+import com.learning.githubrepo.model.db.FavoriteRepo;
 import com.learning.githubrepo.ui.GithubRepoBaseFragment;
-import com.learning.githubrepo.ui.binder.GithubRepoResultAdapter;
+import com.learning.githubrepo.ui.searchrepo.binder.GithubRepoResultAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,16 +42,15 @@ public class GithubRepoSearchFragment extends GithubRepoBaseFragment implements 
     @BindView(R.id.rcv_repo_list)
     RecyclerView rcvRepoList;
 
-    @State
+    //    @State
     String searchQuery;
     @Inject
     GithubRepoPresenter presenter;
 
     @State
-    ArrayList<GithubRepoData> githubRepoData;
+    ArrayList<GithubRepoData> githubRepoData = new ArrayList<>();
 
     GithubRepoResultAdapter adapter;
-    DataListManager<GithubRepoData> dataListManager;
 
 
     public GithubRepoSearchFragment() {
@@ -81,6 +81,8 @@ public class GithubRepoSearchFragment extends GithubRepoBaseFragment implements 
     @Override
     protected void initViews() {
         presenter.attachView(this);
+        activityCallback.setToolbarAttribs("Search repository", false);
+
     }
 
     @Override
@@ -91,14 +93,12 @@ public class GithubRepoSearchFragment extends GithubRepoBaseFragment implements 
 
     @Override
     protected void onReady() {
-        rcvRepoList.setVisibility(View.VISIBLE);
 
-        //Intiallizing the adapter and layout manager
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rcvRepoList.setLayoutManager(layoutManager);
         adapter = new GithubRepoResultAdapter(this);
-        dataListManager = new DataListManager<>(adapter);
-        adapter.addDataManager(dataListManager);
+        adapter.setData(githubRepoData);
+        rcvRepoList.setAdapter(adapter);
 
     }
 
@@ -128,10 +128,15 @@ public class GithubRepoSearchFragment extends GithubRepoBaseFragment implements 
         this.githubRepoData = (ArrayList<GithubRepoData>) data;
         if (githubRepoData != null) {
             adapter.setData(githubRepoData);
-            rcvRepoList.setAdapter(adapter);
         }
 
     }
+
+    @OnClick(R.id.fab_fav)
+    void favButtonClicked() {
+        activityCallback.callFavoriteFragment();
+    }
+
 
     @Override
     public void onItemSelected(GithubRepoData response) {
@@ -139,6 +144,15 @@ public class GithubRepoSearchFragment extends GithubRepoBaseFragment implements 
         intent.addCategory(Intent.CATEGORY_BROWSABLE);
         intent.setDataAndType(Uri.parse(response.url()), "text/html");
         startActivity(intent);
+    }
+
+    @Override
+    public void onFavClicked(GithubRepoData item) {
+        FavoriteRepo favoriteRepo = FavoriteRepo.create(item.id(), item.name() != null ? item.name() : "",
+                item.owner() != null ? item.owner() : "", item.url() != null ? item.url() : "",
+                item.description() != null ? item.description() : "", item.starCount(), item.language() != null ? item.language() : "");
+        presenter.insertToDb(favoriteRepo);
+
     }
 
     @Override

@@ -12,10 +12,14 @@ import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends Fragment {
 
+
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        initDependencies();
+        initViews();
     }
 
     @Override
@@ -25,8 +29,7 @@ public abstract class BaseFragment extends Fragment {
             initArguments(getArguments());
         }
         StateSaver.restoreInstanceState(this, savedInstanceState);
-        initDependencies();
-        initViews();
+
         onReady();
     }
 

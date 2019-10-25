@@ -1,41 +1,37 @@
-package com.learning.githubrepo.ui.searchrepo;
+package com.learning.githubrepo.ui.favorite;
 
 import com.learning.githubrepo.api.GithubRepoApi;
 import com.learning.githubrepo.core.BasePresenter;
 import com.learning.githubrepo.core.ErrorAction;
-import com.learning.githubrepo.model.db.FavoriteRepo;
 
 import javax.inject.Inject;
 
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-
-public class GithubRepoPresenter extends BasePresenter<GithubRepoView> {
+public class FavoritePresenter extends BasePresenter<FavoriteView> {
 
     private final GithubRepoApi githubRepoApi;
 
     @Inject
-    public GithubRepoPresenter(GithubRepoApi githubRepoApi) {
+    public FavoritePresenter(GithubRepoApi githubRepoApi) {
         this.githubRepoApi = githubRepoApi;
     }
 
-
-    public void getRepoList(String searchQuery) {
+    public void getCachedRepos() {
         showProgress();
         Disposable disposable =
-                githubRepoApi.getRepoList(searchQuery)
+                githubRepoApi.getCachedRepos()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(repoList -> {
+                        .subscribe(cachedRepoList -> {
                             if (isViewAttached()) {
                                 showContent();
-                                if (repoList.data() != null) {
-                                    view.showRepos(repoList.data());
+                                if (cachedRepoList.data() != null && cachedRepoList.data().size() > 0) {
+                                    view.showCachedRepos(cachedRepoList.data());
                                 } else {
-                                    view.showError(repoList.errorMessage());
+                                    view.showEmpty("You have no favorite repositories");
                                 }
                             }
                         }, new ErrorAction() {
@@ -47,13 +43,6 @@ public class GithubRepoPresenter extends BasePresenter<GithubRepoView> {
                             }
                         });
         addToSubscription(disposable);
-    }
-
-    public void insertToDb(FavoriteRepo favoriteRepo) {
-        Single.just(1).map(integer -> {
-            githubRepoApi.insertToDb(favoriteRepo);
-            return integer;
-        }).subscribeOn(Schedulers.io()).subscribe();
     }
 
 }

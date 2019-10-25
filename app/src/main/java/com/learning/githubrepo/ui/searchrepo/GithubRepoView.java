@@ -7,5 +7,6 @@ import java.util.List;
 
 interface GithubRepoView extends BaseView {
 
-  void showRepos(List<GithubRepoData> data);
- }
+    void showRepos(List<GithubRepoData> data);
+
+}

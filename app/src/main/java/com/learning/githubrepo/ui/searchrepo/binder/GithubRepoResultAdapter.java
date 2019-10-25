@@ -1,4 +1,4 @@
-package com.learning.githubrepo.ui.binder;
+package com.learning.githubrepo.ui.searchrepo.binder;
 
 import com.ahamed.multiviewadapter.DataListManager;
 import com.ahamed.multiviewadapter.RecyclerAdapter;
@@ -26,6 +26,8 @@ public class GithubRepoResultAdapter extends RecyclerAdapter {
 
     public interface ItemSelectedListener {
         void onItemSelected(GithubRepoData response);
+
+        void onFavClicked(GithubRepoData item);
     }
 }
 

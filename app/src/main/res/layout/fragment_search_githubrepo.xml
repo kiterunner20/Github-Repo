@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
@@ -51,5 +55,14 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/ll_search_layout"
         android:layout_marginTop="@dimen/padding_small" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/padding_small"
+        android:src="@drawable/ic_content_copy_black_24dp" />
 
 </RelativeLayout>

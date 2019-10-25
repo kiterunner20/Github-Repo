@@ -69,4 +69,12 @@ dependencies {
     //LIBRARY FOR RECYCLERVIEW ADAPTER
     implementation 'com.github.devahamed:multi-view-adapter:1.2.6'
 
+    //ROOM DATABASE
+    implementation "androidx.room:room-runtime:2.1.0"
+    annotationProcessor "androidx.room:room-compiler:2.1.0"
+    api 'androidx.room:room-rxjava2:2.1.0'
+
+    //ENTRY LOGS FOR DB
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+
 }

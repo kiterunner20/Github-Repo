@@ -1,8 +1,9 @@
-package com.learning.githubrepo.ui.binder;
+package com.learning.githubrepo.ui.favorite.binder;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,26 +13,27 @@ import com.ahamed.multiviewadapter.ItemBinder;
 import com.ahamed.multiviewadapter.ItemViewHolder;
 import com.learning.githubrepo.R;
 import com.learning.githubrepo.model.GithubRepoData;
+import com.learning.githubrepo.model.db.FavoriteRepo;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GithubRepoResultBinder extends ItemBinder<GithubRepoData, GithubRepoResultBinder.ViewHolder> {
+public class FavoriteRepoBinder extends ItemBinder<FavoriteRepo, FavoriteRepoBinder.ViewHolder> {
 
-    GithubRepoResultAdapter.ItemSelectedListener listener;
+    FavoriteRepoAdapter.ItemSelectedListener listener;
 
-    public GithubRepoResultBinder(GithubRepoResultAdapter.ItemSelectedListener listener) {
+    public FavoriteRepoBinder(FavoriteRepoAdapter.ItemSelectedListener listener) {
         this.listener = listener;
     }
 
     @Override
-    public GithubRepoResultBinder.ViewHolder create(LayoutInflater inflater, ViewGroup parent) {
-        return new GithubRepoResultBinder.ViewHolder(
+    public FavoriteRepoBinder.ViewHolder create(LayoutInflater inflater, ViewGroup parent) {
+        return new FavoriteRepoBinder.ViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.item_repo_list, parent, false));
     }
 
     @Override
-    public void bind(GithubRepoResultBinder.ViewHolder holder, GithubRepoData item) {
+    public void bind(FavoriteRepoBinder.ViewHolder holder, FavoriteRepo item) {
 
 
         if (item.name() != null) {
@@ -55,10 +57,10 @@ public class GithubRepoResultBinder extends ItemBinder<GithubRepoData, GithubRep
 
     @Override
     public boolean canBindData(Object item) {
-        return item instanceof GithubRepoData;
+        return item instanceof FavoriteRepo;
     }
 
-    public class ViewHolder extends ItemViewHolder<GithubRepoData> {
+    public class ViewHolder extends ItemViewHolder<FavoriteRepo> {
 
         @BindView(R.id.cv_repo_details)
         CardView cvRepoList;
@@ -72,6 +74,8 @@ public class GithubRepoResultBinder extends ItemBinder<GithubRepoData, GithubRep
         TextView tvStartCount;
         @BindView(R.id.tv_repo_desc)
         TextView tvRepoDescription;
+        @BindView(R.id.tv_fav)
+        Button tvFav;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -79,6 +83,10 @@ public class GithubRepoResultBinder extends ItemBinder<GithubRepoData, GithubRep
             ButterKnife.bind(this, itemView);
             cvRepoList.setOnClickListener(v -> {
                 listener.onItemSelected(getItem());
+            });
+
+            tvFav.setOnClickListener(v -> {
+                listener.onFavClicked(getItem());
             });
 
         }

@@ -2,10 +2,14 @@ package com.learning.githubrepo.di.module;
 
 import android.content.Context;
 
+import androidx.room.Room;
+
 import com.google.gson.Gson;
 import com.learning.githubrepo.BuildConfig;
 import com.learning.githubrepo.GithubRepoService;
 import com.learning.githubrepo.api.GithubRepoApi;
+import com.learning.githubrepo.cache.LocalDbTask;
+import com.learning.githubrepo.local.FavoriteRepoDatabase;
 import com.learning.githubrepo.server.RemoteServer;
 
 import java.util.concurrent.TimeUnit;
@@ -66,8 +70,21 @@ public class GithubRepoModule {
     }
 
     @Provides
-    GithubRepoApi provideGithubRepoApi(RemoteServer remoteServer) {
-        return new GithubRepoApi(remoteServer);
+    GithubRepoApi provideGithubRepoApi(RemoteServer remoteServer, LocalDbTask localDbTask) {
+        return new GithubRepoApi(remoteServer, localDbTask);
+    }
+
+    @Provides
+    LocalDbTask provideLocalDbTask(FavoriteRepoDatabase database) {
+        return new LocalDbTask(database);
+    }
+
+    @Provides
+    FavoriteRepoDatabase provideGithubRepoDatabase() {
+        return Room.databaseBuilder(context.getApplicationContext(), FavoriteRepoDatabase.class, "app_db")
+                .fallbackToDestructiveMigration()
+                .build();
+
     }
 
 

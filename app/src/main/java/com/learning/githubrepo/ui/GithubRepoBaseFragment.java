@@ -16,5 +16,8 @@ public abstract class GithubRepoBaseFragment extends BaseFragment {
 
     public interface GithubRepoCallback {
 
+        void callFavoriteFragment();
+
+        void setToolbarAttribs(String search_repository, boolean show);
     }
 }
