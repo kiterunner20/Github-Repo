@@ -67,15 +67,25 @@
                     android:textSize="@dimen/font_large"
                     tool:text="Repo description" />
 
-                <Button
-                    android:id="@+id/btn_fav"
+
+                <LinearLayout
+                    android:id="@+id/ll_fav"
+                    style="@android:style/Widget.Button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@color/colorAccent"
-                    android:text="Add to favorite"
-                    android:textAllCaps="false"
-                    android:textColor="#FFFFFF" />
+                    android:orientation="horizontal"
+                    android:padding="@dimen/padding_small">
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_small"
+                        android:padding="@dimen/padding_small"
+                        android:text="Favorite" />
+                </LinearLayout>
 
             </LinearLayout>
 

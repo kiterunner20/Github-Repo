@@ -1,9 +1,11 @@
 package com.learning.githubrepo.ui.favorite.binder;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,14 +38,18 @@ public class FavoriteRepoBinder extends ItemBinder<FavoriteRepo, FavoriteRepoBin
 
 
         if (item.name() != null) {
-            if (item.name().equalsIgnoreCase("kotlin")) {
-            }
+
             holder.tvRepoTitle.setText(item.name());
         }
         if (item.description() != null) {
             holder.tvRepoDescription.setText(item.description());
         }
         if (item.language() != null) {
+            if (item.language().equals("Kotlin")) {
+                holder.cvRepoList.setBackgroundColor(Color.parseColor("#cee2f9"));
+            }else {
+                holder.cvRepoList.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            }
             holder.tvLanguage.setText(item.language());
         }
         holder.tvStartCount.setText("Starred " + String.valueOf(item.starCount()));
@@ -73,8 +79,8 @@ public class FavoriteRepoBinder extends ItemBinder<FavoriteRepo, FavoriteRepoBin
         TextView tvStartCount;
         @BindView(R.id.tv_repo_desc)
         TextView tvRepoDescription;
-        @BindView(R.id.btn_unf)
-        Button unFav;
+        @BindView(R.id.ll_fav)
+        LinearLayout unFav;
 
 
         public ViewHolder(@NonNull View itemView) {

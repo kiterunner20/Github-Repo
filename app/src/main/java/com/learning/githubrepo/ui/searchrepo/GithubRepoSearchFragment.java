@@ -112,6 +112,7 @@ public class GithubRepoSearchFragment extends GithubRepoBaseFragment implements 
         if (isValid()) {
             searchQuery = etSearchQuery.getText().toString();
             presenter.getRepoList(searchQuery);
+            rcvRepoList.setVisibility(View.GONE);
         }
     }
 
@@ -125,6 +126,7 @@ public class GithubRepoSearchFragment extends GithubRepoBaseFragment implements 
 
     @Override
     public void showRepos(List<GithubRepoData> data) {
+        rcvRepoList.setVisibility(View.VISIBLE);
         this.githubRepoData = (ArrayList<GithubRepoData>) data;
         if (githubRepoData != null) {
             adapter.setData(githubRepoData);

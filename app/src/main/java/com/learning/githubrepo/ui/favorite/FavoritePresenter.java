@@ -7,6 +7,7 @@ import com.learning.githubrepo.model.db.FavoriteRepo;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -48,7 +49,7 @@ public class FavoritePresenter extends BasePresenter<FavoriteView> {
     }
 
     public void deleteFromCache(FavoriteRepo favoriteRepo) {
-        Single.just(1).map(integer -> {
+        Observable.just(1).map(integer -> {
             githubRepoApi.deleteFromCache(favoriteRepo);
             return integer;
         }).subscribeOn(Schedulers.io()).subscribe();

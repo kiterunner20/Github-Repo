@@ -163,13 +163,18 @@ public class FavoriteFragment extends GithubRepoBaseFragment implements Favorite
 
         presenter.deleteFromCache(favoriteRepo);
 
-//        Toast.makeText(getContext(), "Succesfully unfavorited the repository", Toast.LENGTH_LONG).show();
+        presenter.getCachedRepos();
+        adapter.notifyDataSetChanged();
+
+
+        Toast.makeText(getContext(), "Succesfully unfavorited the repository", Toast.LENGTH_LONG).show();
 
 
     }
 
     @Override
     public void showCachedRepos(List<FavoriteRepo> data) {
+        rcvFavList.setVisibility(View.VISIBLE);
         this.favoriteRepos = (ArrayList<FavoriteRepo>) data;
         adapter.setData(favoriteRepos);
         rcvFavList.setAdapter(adapter);
@@ -192,6 +197,7 @@ public class FavoriteFragment extends GithubRepoBaseFragment implements Favorite
 
     @Override
     public void showEmpty(String error) {
+        rcvFavList.setVisibility(View.GONE);
         Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
     }
 

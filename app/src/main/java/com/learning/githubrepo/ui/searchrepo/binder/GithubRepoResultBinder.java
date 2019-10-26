@@ -1,9 +1,11 @@
 package com.learning.githubrepo.ui.searchrepo.binder;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,14 +38,17 @@ public class GithubRepoResultBinder extends ItemBinder<GithubRepoData, GithubRep
 
 
         if (item.name() != null) {
-            if (item.name().equalsIgnoreCase("kotlin")) {
-            }
             holder.tvRepoTitle.setText(item.name());
         }
         if (item.description() != null) {
             holder.tvRepoDescription.setText(item.description());
         }
         if (item.language() != null) {
+            if (item.language().equals("Kotlin")) {
+                holder.cvRepoList.setBackgroundColor(Color.parseColor("#cee2f9"));
+            }else {
+                holder.cvRepoList.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            }
             holder.tvLanguage.setText(item.language());
         }
         holder.tvStartCount.setText("Starred " + String.valueOf(item.starCount()));
@@ -73,8 +78,8 @@ public class GithubRepoResultBinder extends ItemBinder<GithubRepoData, GithubRep
         TextView tvStartCount;
         @BindView(R.id.tv_repo_desc)
         TextView tvRepoDescription;
-        @BindView(R.id.btn_fav)
-        Button btnFav;
+        @BindView(R.id.ll_fav)
+        LinearLayout llFav;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -84,7 +89,7 @@ public class GithubRepoResultBinder extends ItemBinder<GithubRepoData, GithubRep
                 listener.onItemSelected(getItem());
             });
 
-            btnFav.setOnClickListener(v -> {
+            llFav.setOnClickListener(v -> {
                 listener.onFavClicked(getItem());
             });
 

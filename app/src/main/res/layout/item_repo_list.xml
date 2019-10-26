@@ -67,14 +67,27 @@
                     android:textSize="@dimen/font_large"
                     tool:text="Repo description" />
 
-                <Button
-                    android:id="@+id/btn_unf"
+                <LinearLayout
+                    android:id="@+id/ll_fav"
+                    style="@android:style/Widget.Button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@color/colorAccent"
-                    android:text="Unfavorite"
-                    android:textColor="#FFFFFF" />
+                    android:orientation="horizontal"
+                    android:padding="@dimen/padding_small">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_star_filled" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_small"
+                        android:padding="@dimen/padding_small"
+                        android:text="Favorite" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
