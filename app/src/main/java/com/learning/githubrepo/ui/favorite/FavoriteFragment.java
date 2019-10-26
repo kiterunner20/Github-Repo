@@ -163,7 +163,7 @@ public class FavoriteFragment extends GithubRepoBaseFragment implements Favorite
 
         presenter.deleteFromCache(favoriteRepo);
 
-        Toast.makeText(getContext(), "Succesfully unfavorited the repository", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getContext(), "Succesfully unfavorited the repository", Toast.LENGTH_LONG).show();
 
 
     }
